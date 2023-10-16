@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Calculator</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;300;400;500&family=Montserrat:wght@500&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #C4C1C1;
+            display: grid;
+        }
+
+        h3{
+            text-align: center;
+            font-size: 25px;
+            text-decoration: underline;
+            color: #F54D45;
+        }
+
+        h3 i{
+            padding: 0px 5px;
+        }
+        .calculator{
+            margin: 0px 77px;
+            border: 2px solid #67646A;
+            padding: 20px;
+            border-radius: 16px;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+            box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+        }
+
+        .text{
+            display: grid;
+            margin: 20px;
+        }
+
+        input{
+            border: none;
+            width: 100%;
+            padding: 8px;
+            background: transparent;
+            font-size: 20px;
+            font-weight: 600px;
+            text-align: right;
+            padding-right: 5px;
+            cursor: pointer;
+            color: white;
+            padding-right: 20px;
+        }
+
+        input::placeholder{
+            color: white;
+        }
+
+        button{
+            border: none;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            font-size: 20px;
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            box-shadow: 0px 2px 3px rgba(226, 224, 228, 0.1);
+            cursor: pointer;
+        }
+
+        .operator{
+            color: #F54D45 ;
+        }
+
+        .equal{
+            background-color: #F52D23;
+        }
+
+        .footer{
+            padding: 5px;
+        }
+
+        .footer p{
+            padding: 5px;
+        }
+
+        @media only screen and (max-width: 460px){
+            
+            .calculator{
+                margin: 15px;
+            }
+            .text{
+                margin: auto;
+                padding: 10px;
+            }
+            button{
+                width: 20%;
+                height: 60px;
+            }
+            .footer p{
+                font-size: 10px;
+                text-align: center;
+            }
+        }
+
+        @media only screen and (max-width: 320px){
+            .text{
+                height: 20vh;
+            }
+            button{
+                width: 19%;
+                height: 40px;
+            }
+            
+        }
+
+        @media only screen and (max-width: 280px){
+            .text{
+                height: 20vh;
+            }
+            button{
+                width: 18%;
+                height: 40px;
+            }
+            .footer p{
+                font-size: 8px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <h3><i class="fa-solid fa-calculator"></i>CALCULATOR</h3>
+    <div class="calculator">
+        <div class="text">
+            <input type="text" class="output" id="outputbox">
+            <input type="text" class="input" placeholder="0" id="inputbox">
+        </div>
+        <div>
+            <button class="operator">AC</button>
+            <button class="operator">DEL</button>
+            <button class="operator">%</button>
+            <button class="operator">/</button>
+        </div>
+        <div>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">*</button>
+        </div>
+        <div>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator">-</button>
+        </div>
+        <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator">+</button>
+        </div>
+        <div>
+            <button>0</button>
+            <button>00</button>
+            <button>.</button>
+            <button class="equal">=</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <hr><p>Copyright &copy; 2023 by Batchu Poojitha | All Rights Reserved.</p>
+    </footer>
+    <script>
+        let input= document.getElementById('inputbox');
+        let output= document.getElementById('outputbox');
+        let buttons= document.querySelectorAll('button');
+
+        let string1= "";
+        let string2= "";
+        let arr= Array.from(buttons);
+        arr.forEach(button =>{
+            button.addEventListener('click', (e) => {
+                if(e.target.innerHTML == '='){
+                    string2= ('= '+eval(string1));
+                    input.value= string2;
+                    output.value= string1;
+                } else if(e.target.innerHTML == 'AC'){
+                    string1="";
+                    input.value="";
+                    output.value="";
+                } else if(e.target.innerHTML== 'DEL'){
+                    string1= string1.substring(0,string1.length-1);
+                    input.value =string1;
+                } else {
+                string1+= e.target.innerHTML;
+                input.value =string1;
+            } })
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .form-container {
+            max-width: 900px;
+            height: 550px;
+            margin: 0 auto;
+            background-color: #8ad3e2;
+            padding: 10px;
+        }
+        .form-container .surveyform{
+            background-color: white;
+            padding: 10px;
+            margin: 0px 10% 0px 10%;
+            text-align: left;
+        }
+        .form-field {
+            margin: 10px 0;
+            padding: 5px 5px 5px 15px;
+
+        }
+        .form-field select{
+            width: 25%;
+        }
+        .form-field button{
+            background-color: #8ad3e2;
+            padding: 10px;
+            border-radius: 15px;
+            width: 45%;
+            font-size: 15px;
+        }
+        .form-field button:hover{
+            color: white;
+            background-color:  #f39c12 ;
+        }
+        footer{
+            padding: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Survey Form</h1>
+        <form id="surveyForm" class="surveyform">
+            <div class="form-field">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-field">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="form-field">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+            </div>
+            <div class="form-field">
+                <label for="country">Country: </label>
+                <select id="country" required>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label>Gender:</label>
+                <input type="checkbox" id="male" name="gender" value="Male"> Male
+                <input type="checkbox" id="female" name="gender" value="Female"> Female
+            </div>
+            <div class="form-field">
+                <label for="profession">Profession:</label>
+                <input type="text" id="profession" required>
+            </div>
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-field">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" required>
+            </div>
+            <div class="form-field">
+                <button type="button" onclick="submitForm()">Submit</button>
+                <button type="button" onclick="resetForm()">Reset</button>
+            </div>
+        </form>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2023 by Batchu Poojitha | All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Retrieve form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const dob = document.getElementById('dob').value;
+            const country = document.getElementById('country').value;
+            const gender = [...document.querySelectorAll('input[name="gender"]:checked')].map(e => e.value).join(', ');
+            const profession = document.getElementById('profession').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+
+            // Check if any required field is empty
+            if (!firstName || !lastName || !dob || !country || !profession || !email || !mobile) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            // Display a popup with the form values
+            const popupText = `First Name: ${firstName}\nLast Name: ${lastName}\nDate of Birth: ${dob}\nCountry: ${country}\nGender: ${gender}\nProfession: ${profession}\nEmail: ${email}\nMobile Number: ${mobile}`;
+            alert(popupText);
+
+            // Reset the form
+            document.getElementById('surveyForm').reset();
+        }
+
+        function resetForm() {
+            document.getElementById('surveyForm').reset();
+        }
+    </script>
+</body>
+</html>
